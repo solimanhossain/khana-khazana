@@ -4,9 +4,11 @@ import RecipeDetails from "@/components/RecipeDetails";
 import RecipeMakeSteps from "@/components/RecipeMakeSteps";
 import { notFound } from "next/navigation";
 
-export function generateMetadata() {
+export async function generateMetadata({ params: { id } }) {
+    const recipeId = id.split("/").pop();
+    const recipe = await singleRecipe(recipeId);
     return {
-        title: "Khana khazana | Recipe Details",
+        title: `Khana khazana | ${recipe?.name}`,
     };
 }
 
@@ -18,14 +20,14 @@ export default async function DetailsPage({ params: { id } }) {
     return (
         <main>
             <section>
-                <div class="grid grid-cols-12 container gap-8 justify-items-center">
-                    <div class="col-span-12 md:col-span-6">
+                <div className="grid grid-cols-12 container gap-8 justify-items-center">
+                    <div className="col-span-12 md:col-span-6">
                         <Image
                             src={recipe?.thumbnail}
                             alt="thumbnail"
                             width={300}
                             height={200}
-                            class="w-full h-full rounded-lg object-contain"
+                            className="w-full h-full rounded-lg object-contain"
                         />
                     </div>
                     <RecipeDetails recipe={recipe} />

@@ -4,6 +4,7 @@ const MONGO_URI = process.env.MONGO_URI;
 const cached = {};
 
 export default async function connectMongo() {
+    // console.log("MONGO_URI", MONGO_URI);
     if (!MONGO_URI) {
         throw new Error("Please define MONGO_URI environment variable");
     }

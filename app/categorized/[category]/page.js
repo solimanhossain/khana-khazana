@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 
 export function generateMetadata({ params: { category } }) {
     return {
-        title: `Khana khazana | ${category}`,
+        title: `Khana khazana | ${decodeURIComponent(category)}`,
     };
 }
 

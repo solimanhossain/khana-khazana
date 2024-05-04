@@ -1,9 +1,9 @@
-import { addUser } from "@/actions/user";
+import { createUser } from "@/actions/user";
 import RegisterButton from "./FormButton";
 
 export default function RegisterForm() {
     return (
-        <form className="login-form" action={addUser}>
+        <form className="login-form" action={createUser}>
             <div>
                 <label htmlFor="firstName">First Name</label>
                 <input type="text" name="firstName" id="firstName" required />

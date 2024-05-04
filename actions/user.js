@@ -4,7 +4,7 @@ import connectMongo from "@/dbConnect/connectMongo";
 import UserModel from "@/models/user-model";
 import { redirect } from "next/navigation";
 
-export async function addUser(formData) {
+export async function createUser(formData) {
     const userData = Object.fromEntries(formData);
     await connectMongo();
     await UserModel.create(userData);
@@ -13,16 +13,31 @@ export async function addUser(formData) {
 
 export async function loginUser(formData) {
     try {
-        const userData = {};
-        userData.email = formData.get("email");
-        userData.password = formData.get("password");
+        const userData = {
+            email: formData.get("email"),
+            password: formData.get("password"),
+        };
+
         await connectMongo();
         const user = await UserModel.findOne(userData).lean();
-        if (user) {
-            return JSON.stringify(user);
-        } else {
-            return "User not found";
-        }
+        if (!user) return null;
+        return JSON.parse(JSON.stringify(user));
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export async function addFavourite(email, password, id) {
+    try {
+        const userData = {
+            email,
+            password,
+        };
+
+        await connectMongo();
+        const user = await UserModel.findOne(userData);
+        user.favourites.push(id);
+        await user.save();
     } catch (err) {
         console.log(err);
     }

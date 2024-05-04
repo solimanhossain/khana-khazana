@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Poppins } from "next/font/google";
+import AuthProvider from "@/providers/AuthProvider";
 
 export const metadata = {
     title: "Khana Khazana",
@@ -18,8 +19,10 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <body className={`${poppins.className} font-sans`}>
-                <Navbar />
-                {children}
+                <AuthProvider>
+                    <Navbar />
+                    {children}
+                </AuthProvider>
             </body>
         </html>
     );
