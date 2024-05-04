@@ -22,11 +22,11 @@ export default function Navbar() {
                     </li>
 
                     <li className="py-2">
-                        <Link href="/">Recipe</Link>
+                        <Link href="#">Recipe</Link>
                     </li>
 
                     <li className="py-2">
-                        <Link href="/">About us</Link>
+                        <Link href="#">About us</Link>
                     </li>
 
                     <NavUserLink />

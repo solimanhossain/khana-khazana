@@ -10,7 +10,6 @@ export default function LoginForm({ children }) {
     const [pending, setPending] = useState(false);
     const { auth, setAuth } = useContext(AuthContext);
     if (auth) redirect("/");
-    console.log(auth);
 
     async function handleUserLogin(event) {
         event.preventDefault();
